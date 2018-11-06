@@ -23,6 +23,7 @@
 
   * Deep learning: to do!
   * Vicon (optional)
+      * [Vicon motion capture system overview](https://mrasl.gitbooks.io/documentation/vicon.html)
       * Ros interface (configured at  [MRASL](https://mrasl.gitbooks.io/documentation/content/) of Polytechnique Montreal) from: https://github.com/MRASL/ros_vrpn_client.git
       * Depedencies
         * vrpn_catkin package from: https://github.com/ethz-asl/vrpn_catkin
