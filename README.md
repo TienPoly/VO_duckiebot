@@ -1,4 +1,4 @@
-# VO_duckiebot
+# Visual Odometry for Duckiebot 
 
 ## Installation
   * Pre-Install: git, catkin, ROS
