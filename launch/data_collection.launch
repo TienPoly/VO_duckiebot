@@ -1,0 +1,11 @@
+<launch>
+  <arg name="veh" default="duckiebot_razor"/>
+  <arg name="debug" default="false"/>
+
+  <group ns="duckiebot">
+    <node name="data_collection" pkg="vo_duckiebot" type="data_collection_node" output="screen">
+       <remap from="odometry" to="/$(arg veh)/vrpn_client/estimated_odometry" />
+    </node>
+  </group>
+
+</launch>

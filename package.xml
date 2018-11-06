@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vo_duckiebot</name>
+  <version>0.0.0</version>
+  <description>Visual Odometry for Duckiebot</description>
+
+  <maintainer email="duc-tien.nguyen@polymtl.ca">Duc-Tien Nguyen</maintainer>
+
+  <license>BSD</license>
+
+  <author email="duc-tien-nguyen@polymtl.ca">Duc-Tien Nguyen</author>
+  <author email="andre-phu-van.nguyen@polymtl.ca">Andre Nguyen</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>dynamic_reconfigure</depend>
+  <depend>roscpp</depend>
+  <depend>cmake_modules</depend>
+  <depend>geometry_msgs</depend>
+  <depend>mav_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>message_generation</depend>
+  <depend>std_msgs</depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
