@@ -1,7 +1,6 @@
 Header header
 
 # Vicon ground truth
-string frame_id
 geometry_msgs/Vector3 vicon_position_W            # x, y, z
 geometry_msgs/Vector3 vicon_velocity_W            # x_dot, y_dot, z_dot
 geometry_msgs/Vector3 vicon_velocity_B            # u, v, w

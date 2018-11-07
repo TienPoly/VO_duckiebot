@@ -14,7 +14,7 @@ static constexpr double kDefaultGravity = 9.81;
 static constexpr double kDefaultPi      = 3.14159;
 
 namespace default_topics {
-  static constexpr char DUCKIEBOT_REPUBLISH[] = "duckiebot_republish";
+  static constexpr char VICON_REPUBLISH[] = "vicon_republish/pose";
 }
 
 

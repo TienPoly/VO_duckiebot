@@ -45,12 +45,12 @@ int main(int argc, char** argv) {
   odometry_sub_ = nh.subscribe(vo_duckiebot::kDefaultOdometryTopic, 1, OdometryCallback);
 
   ros::Publisher duckiebot_pub_;
-  duckiebot_pub_ = nh.advertise<vo_duckiebot::DuckiebotData>(vo_duckiebot::default_topics::DUCKIEBOT_REPUBLISH, 1);
+  duckiebot_pub_ = nh.advertise<vo_duckiebot::DuckiebotData>(vo_duckiebot::default_topics::VICON_REPUBLISH, 1);
 
   Eigen::Vector3d velocity_W ;
   Eigen::Vector3d euler_angles;
 
-  ros::Rate r(200);
+  ros::Rate r(40);
 
   while(ros::ok()) {
       vo_duckiebot::DuckiebotDataPtr duckiebot_data_msg(new vo_duckiebot::DuckiebotData);
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
       //ROS_INFO("x = %f, y = %f, z = %f",gOdometry.position.x(),gOdometry.position.y(),gOdometry.position.z());
 
       duckiebot_data_msg->header.stamp  =  ros::Time::now();
-      duckiebot_data_msg->frame_id = "vicon";
+      duckiebot_data_msg->header.frame_id = "vicon";
       duckiebot_data_msg->vicon_position_W        = vo_duckiebot::geoVectorFromEig(gOdometry.position);
       duckiebot_data_msg->vicon_velocity_W        = vo_duckiebot::geoVectorFromEig(velocity_W);
       duckiebot_data_msg->vicon_velocity_B        = vo_duckiebot::geoVectorFromEig(gOdometry.velocity);
