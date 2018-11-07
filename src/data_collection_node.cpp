@@ -13,12 +13,26 @@ void OdometryCallback(const nav_msgs::OdometryConstPtr& odom_msg) {
   vo_duckiebot::eigenOdometryFromMsg(odom_msg, &gOdometry);                     // new measurement from Vicon
 }
 
-// Camera callback
-// Docker Ros-picam: https://github.com/duckietown/rpi-duckiebot-ros-picam
-// ROS Pi Camera launch: https://github.com/duckietown/Software/blob/master18/catkin_ws/src/00-infrastructure/duckietown/launch/camera.launch
-// ROS Pi Camera node https://github.com/duckietown/Software/tree/master18/catkin_ws/src/00-infrastructure/duckietown/config/baseline/pi_camera
+/*
+Camera callback
+Docker Ros-picam:       https://github.com/duckietown/rpi-duckiebot-ros-picam
+ROS Pi Camera launch:   https://github.com/duckietown/Software/blob/master18/catkin_ws/src/00-infrastructure/duckietown/launch/camera.launch
+ROS Pi Camera node:     https://github.com/duckietown/Software/tree/master18/catkin_ws/src/05-teleop/pi_camera
+                        https://github.com/duckietown/Software/tree/master18/catkin_ws/src/00-infrastructure/duckietown/config/baseline/pi_camera
 
+camera_node: publish /camera_node/image/compressed at 30Hz
+decoder_node: subscribe /camera_node/image/compressed
+              republish /decoder_node/image/compressed at 2Hz => remap to /camera_node/image/compressed => Conflict !
+              publish /decoder_node/image/raw at 2Hz => remap to /camera_node/image/raw
 
+Question 1: 30 Hz => too fast ?
+Question 2: how to run ros-picam at 30Hz
+    Sol 1: can run ros-picam decoder node at 30Hz => rosbag record
+    Sol 2: run locally decoder_node
+        python: ok
+        C++: to do
+Question 3: max 20Hz => off-line image processing ?
+*/
 
 
 int main(int argc, char** argv) {

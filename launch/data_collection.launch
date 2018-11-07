@@ -1,10 +1,17 @@
 <launch>
-  <arg name="veh" default="duckiebot_razor"/>
+  <arg name="veh" default="razor"/>
+  <arg name="veh_vicon" default="duckiebot_razor"/>
   <arg name="debug" default="false"/>
+  <arg name="pkg_name" value="vo_duckiebot"/>
+  <arg name="param_file_name" default="default" doc="Specify a param file. ex:megaman"/>
 
-  <group ns="duckiebot">
-    <node name="data_collection" pkg="vo_duckiebot" type="data_collection_node" output="screen">
-       <remap from="odometry" to="/$(arg veh)/vrpn_client/estimated_odometry" />
+  <group ns="vo_duckiebot">
+    <node name="data_collection" pkg="$(arg pkg_name)" type="data_collection_node" output="screen">
+       <remap from="odometry" to="/$(arg veh_vicon)/vrpn_client/estimated_odometry" />
+    </node>
+    <node name="decoder_30Hz" pkg="$(arg pkg_name)" type="decoder_node.py"  output="screen" clear_params="true" required="true">
+        <rosparam command="load" file="$(find vo_duckiebot)/parameters/$(arg param_file_name).yaml"/>
+        <remap from="compressed_image" to="/$(arg veh)/camera_node/image/compressed" />
     </node>
   </group>
 

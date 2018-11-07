@@ -9,7 +9,6 @@
   <license>BSD</license>
 
   <author email="duc-tien-nguyen@polymtl.ca">Duc-Tien Nguyen</author>
-  <author email="andre-phu-van.nguyen@polymtl.ca">Andre Nguyen</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
