@@ -6,7 +6,7 @@
   <arg name="param_file_name" default="default" doc="Specify a param file. ex:megaman"/>
 
   <group ns="vo_duckiebot">
-    <node name="data_collection" pkg="$(arg pkg_name)" type="data_collection_node" output="screen">
+    <node name="data_syn" pkg="$(arg pkg_name)" type="data_syn_node" output="screen">
        <remap from="odometry" to="/$(arg veh_vicon)/vrpn_client/estimated_odometry" />
     </node>
     <node name="camera_republish" pkg="$(arg pkg_name)" type="decoder_node.py"  output="screen" clear_params="true" required="true">

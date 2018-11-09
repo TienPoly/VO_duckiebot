@@ -17,17 +17,18 @@ find_package(catkin REQUIRED COMPONENTS
     trajectory_msgs
     message_generation
     std_msgs
+    roscpp
+    rospy
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(Eigen3 REQUIRED)
 
-
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -137,14 +138,14 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 
-add_executable(data_collection_node
-    src/data_collection_node.cpp
+add_executable(data_syn_node
+    src/data_syn_node.cpp
 )
-add_dependencies(data_collection_node
+add_dependencies(data_syn_node
     ${${PROJECT_NAME}_EXPORTED_TARGETS}
     ${catkin_EXPORTED_TARGETS}
 )
-target_link_libraries(data_collection_node
+target_link_libraries(data_syn_node
     ${catkin_LIBRARIES}
 )
 

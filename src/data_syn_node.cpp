@@ -34,7 +34,6 @@ Question 2: how to run ros-picam at 30Hz
 Question 3: max 20Hz => off-line image processing ?
 */
 
-
 int main(int argc, char** argv) {
   ros::init(argc, argv, "data_collection_node");
   ros::NodeHandle nh;

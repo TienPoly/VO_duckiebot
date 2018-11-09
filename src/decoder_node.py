@@ -4,6 +4,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import numpy as np
 from sensor_msgs.msg import CompressedImage,Image
+#from duckietown_msgs.msg import BoolStamped
 
 
 class DecoderNode(object):
@@ -14,11 +15,11 @@ class DecoderNode(object):
 
         self.publish_freq = self.setupParam("~publish_freq", 30.0)
         self.publish_duration = rospy.Duration.from_sec(1.0/self.publish_freq)
-        self.pub_raw = rospy.Publisher("~image/raw",Image,queue_size=1)                     # ~ replaces the node name 
-        # self.pub_compressed = rospy.Publisher("~image/compressed", CompressedImage, queue_size=1)
+        self.pub_raw = rospy.Publisher("~image/raw",Image,queue_size=1)
+        self.pub_compressed = rospy.Publisher("~image/compressed", CompressedImage, queue_size=1)
         self.last_stamp = rospy.Time.now()
-        self.sub_compressed_img = rospy.Subscriber("compressed_image",CompressedImage,self.cbImg,queue_size=1)
-        # self.sub_switch = rospy.Subscriber("~switch",BoolStamped, self.cbSwitch, queue_size=1)
+        self.sub_compressed_img = rospy.Subscriber("~compressed_image",CompressedImage,self.cbImg,queue_size=1)
+        #self.sub_switch = rospy.Subscriber("~switch",BoolStamped, self.cbSwitch, queue_size=1)
 
     def setupParam(self,param_name,default_value):
         value = rospy.get_param(param_name,default_value)
@@ -26,8 +27,8 @@ class DecoderNode(object):
         rospy.loginfo("[%s] %s = %s " %(self.node_name,param_name,value))
         return value
 
-    def cbSwitch(self,switch_msg):
-        self.active = switch_msg.data
+    #def cbSwitch(self,switch_msg):
+    #    self.active = switch_msg.data
 
     def cbImg(self,msg):
         if not self.active:
@@ -46,7 +47,7 @@ class DecoderNode(object):
         img_msg.header.stamp = msg.header.stamp
         img_msg.header.frame_id = msg.header.frame_id
         self.pub_raw.publish(img_msg)
-        # self.pub_compressed.publish(msg)
+        self.pub_compressed.publish(msg)
         # time_3 = time.time()
         # rospy.loginfo("[%s] Took %f sec to decompress."%(self.node_name,time_1 - time_start))
         # rospy.loginfo("[%s] Took %f sec to conver to Image."%(self.node_name,time_2 - time_1))
