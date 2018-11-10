@@ -1,5 +1,4 @@
 clc;close all; clear all
-file_name = {'razor2_syn'}
 % [names, types] = bagInfo('razor2_syn.bag')
 
 for i = 1:length(file_name)

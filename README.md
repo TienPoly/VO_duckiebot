@@ -86,26 +86,31 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     $ rosbag record /razor/camera_node/image/raw /razor/vicon_republish/pose
     ```
 
-    An example of the recorded bag file: [razor_2_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
-
-## Data export
-  * txt file from bag 
-  * png image from image/raw
-      ```
-      ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
-      ```
-  * png image from Segment.msg  
+    An example of the new bag file: [razor_2_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 ## Ground projection: to do
   * can not run ground_projection locally
   * run on duckiebot => segment is not published (00-infrastructure/duckietown_msgs/msg/Segment.msg)
-  * to run at duckietown
+  * to run at duckietown (A222)
 
-## VISO2
+
+  ## Data export
+    * txt file from bag using MATLAB: run script_to_run.m with your new bag file
+
+    * png image from image/raw
+        ```
+        ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
+        ```
+    * png image from Segment.msg: TO DO
+
+    An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+
+
+## VISO2: TO DO
   * Offline
   * Online
 
-## Deep learning 1
-## Deep learning n
+## DEEP LEARNING 1
+## DEEP LEARNING n
 
 ## TO DO: presentation, new video with camera calibration, viso2, other direct method, Ground projection, deep learning
