@@ -19,6 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
     std_msgs
     roscpp
     rospy
+    image_transport
 )
 
 ## System dependencies are found with CMake's conventions
@@ -57,7 +58,8 @@ catkin_python_setup()
 # Generate messages in the 'msg' folder
 add_message_files(
   FILES
-  DuckiebotData.msg
+  Vicon.msg
+  Vicon_simple.msg
 )
 
 ## Generate services in the 'srv' folder

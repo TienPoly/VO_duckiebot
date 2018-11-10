@@ -52,45 +52,60 @@
       $ rosbag record /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
       ```
 
+  An example of this bag file: [razor_2.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+
 ## Decoder and Synchronization (on your desktop)
-NOTE: the reason that we did not run decoder_node on Duckiebot because it run at very low frequency
+NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
   * Run roscore (1st terminal)
     ```
     $ roscore
     ```
   * Play your bag file (2nd terminal)
     ```
-    $ rosplay <your_bag> --topic rosbag play razor_2.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
+    $ rosbag play <your_bag> --topic rosbag play razor_2.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
     ```
   * Run decoder_node at maximum 30Hz on your desktop (3rd terminal)
     ```
-    roslaunch vo_duckiebot decoder_node.launch veh:="razor"
+    $ cd project_VO_ws && source devel/setup.bash
+    $ roslaunch vo_duckiebot decoder_node.launch veh:="razor" param_file_name:="decoder_30Hz"
     ```
-  * Check image_raw published at maximum 30Hz
+  * Check image_raw published at maximum 30Hz (4th terminal)
     ```
     rostopic hz /razor/camera_node/image/raw
     ```
-    Even we run this node at 30Hz, this topic is published at maximum 20Hz!
-  * Run synchronization_node
-  * Record new data
+
+  Even we run this node at 30Hz, this topic is published at maximum 20Hz!
+
+  * Run synchronization_node (5th terminal): synchronization between image/raw and vicon data
+    ```
+    $ cd project_VO_ws && source devel/setup.bash
+    $ roslaunch vo_duckiebot data_syn.launch
+    ```
+  * Record new data (4th terminal)
+    ```
+    $ rosbag record /razor/camera_node/image/raw /razor/vicon_republish/pose
+    ```
+
+    An example of the recorded bag file: [razor_2_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+
+## Data export
+  * txt file from bag 
+  * png image from image/raw
+      ```
+      ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
+      ```
+  * png image from Segment.msg  
 
 ## Ground projection: to do
   * can not run ground_projection locally
   * run on duckiebot => segment is not published (00-infrastructure/duckietown_msgs/msg/Segment.msg)
-  * may bedu
+  * to run at duckietown
 
-## Data export
-  * txt file from
-  * png image from image/raw
-      ```
-
-      ```
-  * png image from Segment.msg  
 ## VISO2
-  * Running offline
-  * Running online
+  * Offline
+  * Online
 
 ## Deep learning 1
 ## Deep learning n
 
-## TO DO: presentation, new video after camera calibration 
+## TO DO: presentation, new video with camera calibration, viso2, other direct method, Ground projection, deep learning

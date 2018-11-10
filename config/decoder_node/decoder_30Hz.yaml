@@ -1,0 +1,3 @@
+#parameters for vo_duckiebot/decoder_node
+publish_freq: 30.0
+#publish_freq: 4.0

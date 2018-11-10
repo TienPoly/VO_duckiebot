@@ -5,14 +5,17 @@
   <arg name="pkg_name" value="vo_duckiebot"/>
   <arg name="param_file_name" default="default" doc="Specify a param file. ex:megaman"/>
 
-  <group ns="vo_duckiebot">
+  <group ns="$(arg veh)">
     <node name="data_syn" pkg="$(arg pkg_name)" type="data_syn_node" output="screen">
        <remap from="odometry" to="/$(arg veh_vicon)/vrpn_client/estimated_odometry" />
-    </node>
-    <node name="camera_republish" pkg="$(arg pkg_name)" type="decoder_node.py"  output="screen" clear_params="true" required="true">
-        <rosparam command="load" file="$(find vo_duckiebot)/parameters/$(arg param_file_name).yaml"/>
-        <remap from="compressed_image" to="/$(arg veh)/camera_node/image/compressed" />
+       <remap from="camera/image" to="/$(arg veh)/camera_node/image/raw" />
     </node>
   </group>
 
 </launch>
+
+<!-- Publication -->
+<!-- "~image/raw": sensor_msgs/Image. Raw image by decoding a compressed image in jpeg format.-->
+
+<!-- Subscription -->
+<!-- "~/image/raw": sensor_msgs/Image. Raw image by decoding (high frequency ~ 20-30Hz) a compressed image in jpeg format.-->
