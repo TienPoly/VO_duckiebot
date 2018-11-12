@@ -62,7 +62,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     ```
   * Play your bag file (2nd terminal)
     ```
-    $ rosbag play <your_bag> --topic rosbag play razor_2.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
+    $ rosbag play razor_2.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
     ```
   * Run decoder_node at maximum 30Hz on your desktop (3rd terminal)
     ```
@@ -94,14 +94,13 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
   * to run at duckietown (A222)
 
 
-  ## Data export
-    * txt file from bag using MATLAB: run script_to_run.m with your new bag file
-
-    * png image from image/raw
-        ```
-        ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
-        ```
-    * png image from Segment.msg: TO DO
+## Data export
+  * txt file from bag using MATLAB: run script_to_run.m with your new bag file
+  * png image from image/raw
+    ```
+    $ ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
+    ```
+  * png image from Segment.msg: TO DO
 
     An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
