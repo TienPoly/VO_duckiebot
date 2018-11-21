@@ -41,7 +41,11 @@
       $ docker -H razor.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
       $ roslaunch duckietown camera.launch veh:="razor" raw:="false"
       ```
-  * Run Vicon on your desktop (2nd terminal)
+  * Run joystick container (2nd terminal)
+      ```
+      $ docker -H razor.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
+      ```
+  * Run Vicon on your desktop (same 2nd terminal)
       ```
       $ cd project_VO_ws && source devel/setup.bash
       $ roslaunch ros_vrpn_client mrasl_vicon_duckiebot.launch
