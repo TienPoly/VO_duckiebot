@@ -56,7 +56,7 @@
       $ rosbag record /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
       ```
 
-  An example of this bag file: [razor_2.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+  An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
 
 ## Decoder and Synchronization (on your desktop)
 NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
@@ -66,7 +66,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     ```
   * Play your bag file (2nd terminal)
     ```
-    $ rosbag play razor_2.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
+    $ rosbag play razor_3.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
     ```
   * Run decoder_node at maximum 30Hz on your desktop (3rd terminal)
     ```
@@ -90,7 +90,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     $ rosbag record /razor/camera_node/image/raw /razor/vicon_republish/pose
     ```
 
-    An example of the new bag file: [razor_2_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+    An example of the new bag file: [razor_3_syn.bag](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
 
 ## Ground projection: to do
   * can not run ground_projection locally
@@ -102,11 +102,11 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
   * txt file from bag using MATLAB: run script_to_run.m with your new bag file
   * png image from image/raw
     ```
-    $ ./bag2img.py razor_2_syn.bag images_30Hz/ /razor/camera_node/image/raw
+    $ ./bag2img.py razor_3_syn.bag images_30Hz/ /razor/camera_node/image/raw
     ```
   * png image from Segment.msg: TO DO
 
-    An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+    An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
 
 
 ## VISO2: TO DO
