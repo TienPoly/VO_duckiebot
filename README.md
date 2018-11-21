@@ -56,7 +56,7 @@
       $ rosbag record /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
       ```
 
-  An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
+  An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 ## Decoder and Synchronization (on your desktop)
 NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
@@ -90,7 +90,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     $ rosbag record /razor/camera_node/image/raw /razor/vicon_republish/pose
     ```
 
-    An example of the new bag file: [razor_3_syn.bag](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
+    An example of the new bag file: [razor_3_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 ## Ground projection: to do
   * can not run ground_projection locally
@@ -106,7 +106,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     ```
   * png image from Segment.msg: TO DO
 
-    An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1gwZQGZ7hjD9ViRPCEd62_BrrRTSrKLID)
+    An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 
 ## VISO2: TO DO
