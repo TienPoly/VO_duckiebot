@@ -60,7 +60,7 @@
 
 ## Decoder and Synchronization (on your desktop)
 NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
- * Run roscore (1st terminal)
+   * Run roscore (1st terminal)
      ```
      $ roscore
      ```
