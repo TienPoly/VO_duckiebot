@@ -35,7 +35,7 @@
       $ catkin build  
       ```
 
-## Data collection (without ground projection)
+## Data collection 
   * Run camera_node on your duckiebot (1st terminal)
       ```
       $ docker -H razor.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
@@ -60,25 +60,27 @@
 
 ## Decoder and Synchronization (on your desktop)
 NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
-  * Run roscore (1st terminal)
-    ```
-    $ roscore
-    ```
-  * Play your bag file (2nd terminal)
-    ```
-    $ rosbag play razor_3.bag --topic /razor/camera_node/image/compressed /duckiebot_razor/vrpn_client/estimated_odometry
-    ```
-  * Run decoder_node at maximum 30Hz on your desktop (3rd terminal)
-    ```
-    $ cd project_VO_ws && source devel/setup.bash
-    $ roslaunch vo_duckiebot decoder_node.launch veh:="razor" param_file_name:="decoder_30Hz"
-    ```
-  * Check image_raw published at maximum 30Hz (4th terminal)
-    ```
-    rostopic hz /razor/camera_node/image/raw
-    ```
+ * Run roscore (1st terminal)
+     ```
+     $ roscore
+     ```
+   * Play and Get camera info (2nd & 3rd terminals)
+     ```
+     $ rosbag play razor_3.bag
+     $ rostopic echo /ra313/camera_node/camera_info
+     ```
+   * Play and Run decoder_node at maximum 30Hz on your desktop (2nd & 3rd terminals)
+     ```
+     $ rosbag play razor_3.bag --topic /razor/camera_node/image/compressed  /duckiebot_razor/vrpn_client/estimated_odometry
+     $ cd project_VO_ws && source devel/setup.bash
+     $ roslaunch vo_duckiebot decoder_node.launch veh:="razor" param_file_name:="decoder_30Hz"
+     ```
+   * Check image_raw published at maximum 30Hz (4th terminal)
+     ```
+     rostopic hz /razor/camera_node/image/raw
+     ```
 
-  Even we run this node at 30Hz, this topic is published at maximum 20Hz!
+   Even we run this node at 30Hz, this topic is published at maximum 20Hz!
 
   * Run synchronization_node (5th terminal): synchronization between image/raw and vicon data
     ```
