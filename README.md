@@ -67,7 +67,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
    * Play and Get camera info (2nd & 3rd terminals)
      ```
      $ rosbag play razor_3.bag
-     $ rostopic echo /ra313/camera_node/camera_info
+     $ rostopic echo /razor/camera_node/camera_info
      ```
    * Play and Run decoder_node at maximum 30Hz on your desktop (2nd & 3rd terminals)
      ```
