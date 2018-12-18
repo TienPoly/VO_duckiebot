@@ -43,20 +43,16 @@
   * Check camera (2nd terminal)
       <pre><code>$ cd project_VO_ws && source devel/setup.bash
     $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
-    $ rqt
-      </code></pre>
+    $ rqt </code></pre>
   * Run joystick container (2nd terminal or using portainer)
-      <pre><code>$ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
-      </code></pre>
+      <pre><code>$ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18 </code></pre>
   * Run Vicon on your desktop (2nd terminal): the Vicon object name is '*duckiebot_hostname*'
       <pre><code>$ cd project_VO_ws && source devel/setup.bash
     $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
-    $ roslaunch ros_vrpn_client mrasl_vicon_duckiebot.launch object_name:=<i>duckiebot_hostname</i>
-      </code></pre>
+    $ roslaunch ros_vrpn_client mrasl_vicon_duckiebot.launch object_name:=<i>duckiebot_hostname</i> </code></pre>
   * Making your Duckiebot move and Record data on your desktop (3rd terminal)
       <pre><code>$ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/      
-    $ rosbag record /<i>hostname</i>/camera_node/camera_info /<i>hostname</i>/camera_node/image/compressed <i>/duckiebot_hostname</i>/vrpn_client/estimated_odometry
-      </code></pre>
+    $ rosbag record /<i>hostname</i>/camera_node/camera_info /<i>hostname</i>/camera_node/image/compressed <i>/duckiebot_hostname</i>/vrpn_client/estimated_odometry </code></pre>
 
   An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
