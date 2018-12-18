@@ -18,7 +18,7 @@
       $ cd project_VO_ws/src
       $ git clone https://github.com/TienPoly/viso2.git
       ```
-  * Ground projection: to do!
+  * Ground projection: to get the relative pose for VISO 2
       https://github.com/duckietown/Software/tree/master18/catkin_ws/src/10-lane-control/ground_projection
 
   * Deep learning: to do!
