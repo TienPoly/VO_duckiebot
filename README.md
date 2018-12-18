@@ -40,52 +40,53 @@
       <pre><code>$ docker -H <i>hostname</i>.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
     $ roslaunch duckietown camera.launch veh:="<i>hostname</i>" raw:="false"
       </code></pre>
-  * Run joystick container (2nd terminal)
+  * Check camera (2nd terminal)
+      <pre><code>$ cd project_VO_ws && source devel/setup.bash
+      $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
+      $ rqt
+      </code></pre>
+  * Run joystick container (2nd terminal or using portainer)
       <pre><code>$ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
       </code></pre>
-  * Modify the Vicon launch file `ros_vrpn_client/mrasl_vicon_duckiebot.launch`
-      ```xml
-      <arg name="object_name" default="duckiebot_hostname" />
-      ```
-  * Run Vicon on your desktop (same 2nd terminal):
+  * Run Vicon on your desktop (2nd terminal):
       <pre><code>$ cd project_VO_ws && source devel/setup.bash
     $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
     $ roslaunch ros_vrpn_client mrasl_vicon_duckiebot.launch object_name:=<i>duckiebot_hostname</i>
       </code></pre>
-  * Record data on your desktop (3rd terminal)
+  * Making your Duckiebot move and Record data on your desktop (3rd terminal)
       <pre><code>$ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/      
-    $ rosbag record /<i>hostname</i>/camera_node/camera_info /<i>hostname</i>/camera_node/image/compressed /duckiebot_<i>hostname</i>/vrpn_client/estimated_odometry
+    $ rosbag record /<i>hostname</i>/camera_node/camera_info /<i>hostname</i>/camera_node/image/compressed <i>/duckiebot_hostname</i>/vrpn_client/estimated_odometry
       </code></pre>
 
   An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 ## Decoder and Synchronization (on your desktop)
-NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
+NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a local desktop.  
    * Run roscore (1st terminal)
      ```
      $ roscore
      ```
-   * Play and Get camera info (2nd & 3rd terminals)
+   * Get camera info (2nd & 3rd terminals)
      <pre><code>$ rosbag play <i>bag_file</i>.bag
      $ rostopic echo /<i>hostname</i>/camera_node/camera_info
      </code></pre>
-   * Play and Run decoder_node at 10Hz (maximum 30Hz) on your desktop (2nd & 3rd terminals)
-     <pre><code>$ rosbag play <i>bag_file</i>.bag --topic /<i>hostname</i>/camera_node/image/compressed  /duckiebot_<i>hostname</i>/vrpn_client/estimated_odometry
+   * Run decoder_node at 10Hz (maximum 30Hz) on your desktop (2nd & 3rd terminals)
+     <pre><code>$ rosbag play <i>bag_file</i>.bag --topic /<i>hostname</i>/camera_node/image/compressed  <i>/duckiebot_hostname</i>/vrpn_client/estimated_odometry
      $ cd project_VO_ws && source devel/setup.bash
      $ roslaunch vo_duckiebot decoder_node.launch veh:="<i>hostname</i>" param_file_name:="decoder_10Hz"
      </code></pre>
-   * Check image_raw published at maximum 30Hz (4th terminal)
+   * Check image_raw published at 10Hz (4th terminal)
      <pre><code>rostopic hz /<i>hostname</i>/camera_node/image/raw
      </code></pre>
 
-   Even we run this node at 10Hz, this topic is published at about 8Hz!
+     Even we run this node at 10Hz, this topic is published at about 8Hz!
 
-  * Run synchronization_node (5th terminal): synchronization between image/raw and vicon data
+* Run synchronization_node (5th terminal): synchronization between image/raw and vicon data
     ```
     $ cd project_VO_ws && source devel/setup.bash
     $ roslaunch vo_duckiebot data_syn.launch
     ```
-  * Record new data (4th terminal)
+* Record new data (4th terminal)
     <pre><code>$ rosbag record /<i>hostname</i>/camera_node/image/raw /<i>hostname</i>/vicon_republish/pose
     </code></pre>
 
