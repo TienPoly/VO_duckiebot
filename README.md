@@ -38,8 +38,7 @@
 ## Data collection
   * Run camera_node on your duckiebot (1st terminal)
       <pre><code>$ docker -H <i>hostname</i>.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
-    $ roslaunch duckietown camera.launch veh:="<i>hostname</i>" raw:="false"
-      </code></pre>
+    $ roslaunch duckietown camera.launch veh:="<i>hostname</i>" raw:="false" </code></pre>
   * Check camera (2nd terminal)
       <pre><code>$ cd project_VO_ws && source devel/setup.bash
     $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
@@ -88,8 +87,7 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
 ## Data export
   * txt file from bag using MATLAB: run script_to_run.m with your new bag file
   * png image from image/raw: create a new folder, e.g. `images_10Hz`
-    <pre><code>$ ./bag2img.py <i>bag_file_syn</i>.bag images_10Hz/ /<i>hostname</i>/camera_node/image/raw
-    </code></pre>
+    <pre><code>$ ./bag2img.py <i>bag_file_syn</i>.bag images_10Hz/ /<i>hostname</i>/camera_node/image/raw </code></pre>
 
     An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
