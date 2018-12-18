@@ -37,9 +37,9 @@
 
 ## Data collection
   * Run camera_node on your duckiebot (1st terminal)
-<pre><code>$ docker -H <b>hostname</b>.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
-$ roslaunch duckietown camera.launch veh:="razor" raw:="false"
-</code></pre>
+      <pre><code>$ docker -H <i>hostname</i>.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
+      $ roslaunch duckietown camera.launch veh:="razor" raw:="false"
+      </code></pre>
 
 
   * Run joystick container (2nd terminal)
