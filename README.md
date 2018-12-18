@@ -78,10 +78,10 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
 
    * Verify camera info and Check image_raw published at 10Hz
        <pre><code>$ rostopic echo /<i>hostname</i>/camera_node/camera_info
-    $ rostopic hz /<i>hostname</i>/camera_node/image/raw
+        $ rostopic hz /<i>hostname</i>/camera_node/image/raw
         </code></pre>
 
-     Even we run this node at 10Hz, this topic is published at about 8Hz!
+    Even we run this node at 10Hz, this topic is published at about 8Hz!
 
     An example of the new bag file: [razor_3_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
