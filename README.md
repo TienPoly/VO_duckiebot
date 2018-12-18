@@ -38,26 +38,24 @@
 ## Data collection
   * Run camera_node on your duckiebot (1st terminal)
       <pre><code>$ docker -H <i>hostname</i>.local run -it --net host --privileged --name base -v /data:/data duckietown/rpi-duckiebot-base:master18 /bin/bash
-      $ roslaunch duckietown camera.launch veh:="<i>hostname</i>" raw:="false"
+    $ roslaunch duckietown camera.launch veh:="<i>hostname</i>" raw:="false"
       </code></pre>
 
 
   * Run joystick container (2nd terminal)
-      ```
-      $ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
-      ```
+      <pre><code>$ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
+      </code></pre>
   * Run Vicon on your desktop (same 2nd terminal)
       ```
       $ cd project_VO_ws && source devel/setup.bash
       $ roslaunch ros_vrpn_client mrasl_vicon_duckiebot.launch
       ```
   * Record data on your desktop (3rd terminal)
-      ```
-      $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/      
+      <pre><code>$ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/      
       $ rosbag record /<i>hostname</i>/camera_node/image/compressed /duckiebot_<i>hostname</i>/vrpn_client/estimated_odometry
-      ```
+      </code></pre>
 
-  An example of this bag file: [<i>hostname</i>_3.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
+  An example of this bag file: [razor_3.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
 ## Decoder and Synchronization (on your desktop)
 NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) due to limited computation. To get more images for deep learning, we run this node on a desktop.  
@@ -66,20 +64,17 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
      $ roscore
      ```
    * Play and Get camera info (2nd & 3rd terminals)
-     ```
-     $ rosbag play <i>hostname</i>_3.bag
+     <pre><code>$ rosbag play <i>hostname</i>_3.bag
      $ rostopic echo /<i>hostname</i>/camera_node/camera_info
-     ```
+     </code></pre>
    * Play and Run decoder_node at maximum 30Hz on your desktop (2nd & 3rd terminals)
-     ```
-     $ rosbag play <i>hostname</i>_3.bag --topic /<i>hostname</i>/camera_node/image/compressed  /duckiebot_<i>hostname</i>/vrpn_client/estimated_odometry
+     <pre><code>$ rosbag play <i>hostname</i>_3.bag --topic /<i>hostname</i>/camera_node/image/compressed  /duckiebot_<i>hostname</i>/vrpn_client/estimated_odometry
      $ cd project_VO_ws && source devel/setup.bash
      $ roslaunch vo_duckiebot decoder_node.launch veh:="<i>hostname</i>" param_file_name:="decoder_30Hz"
-     ```
+     </code></pre>
    * Check image_raw published at maximum 30Hz (4th terminal)
-     ```
-     rostopic hz /<i>hostname</i>/camera_node/image/raw
-     ```
+     <pre><code>rostopic hz /<i>hostname</i>/camera_node/image/raw
+     </code></pre>
 
    Even we run this node at 30Hz, this topic is published at maximum 20Hz!
 
@@ -89,9 +84,8 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
     $ roslaunch vo_duckiebot data_syn.launch
     ```
   * Record new data (4th terminal)
-    ```
-    $ rosbag record /<i>hostname</i>/camera_node/image/raw /<i>hostname</i>/vicon_republish/pose
-    ```
+    <pre><code>$ rosbag record /<i>hostname</i>/camera_node/image/raw /<i>hostname</i>/vicon_republish/pose
+    </code></pre>
 
     An example of the new bag file: [<i>hostname</i>_3_syn.bag](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
 
@@ -104,9 +98,8 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
 ## Data export
   * txt file from bag using MATLAB: run script_to_run.m with your new bag file
   * png image from image/raw
-    ```
-    $ ./bag2img.py <i>hostname</i>_3_syn.bag images_30Hz/ /<i>hostname</i>/camera_node/image/raw
-    ```
+    <pre><code>$ ./bag2img.py <i>hostname</i>_3_syn.bag images_30Hz/ /<i>hostname</i>/camera_node/image/raw
+    </code></pre>
   * png image from Segment.msg: TO DO
 
     An example of the text file and png images: [Duckiebot](https://drive.google.com/drive/folders/1I7cswHQ0SAr3dja1L5zuYut4Grgubu1t)
