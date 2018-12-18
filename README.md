@@ -44,8 +44,8 @@
       <pre><code>$ docker -H <i>hostname</i>.local run -dit --privileged --name joystick --network=host -v /data:/data duckietown/rpi-duckiebot-joystick-demo:master18
       </code></pre>
   * Modify the Vicon launch file `ros_vrpn_client/mrasl_vicon_duckiebot.launch`
-    <pre><code><arg name="object_name" default="duckiebot_<i>hostname</i>" />
-    </code></pre>
+      <pre><code><arg name="object_name" default="duckiebot_<i>hostname</i>" />
+      </code></pre>
   * Run Vicon on your desktop (same 2nd terminal):
       <pre><code>$ cd project_VO_ws && source devel/setup.bash
     $ export ROS_MASTER_URI=http://<i>hostname</i>.local:11311/
