@@ -67,22 +67,18 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
    * Run decoder_node at 10Hz (maximum 30Hz) on your desktop (2nd & 3rd terminals)
      <pre><code>$ rosbag play <i>bag_file</i>.bag --topic /<i>hostname</i>/camera_node/image/compressed  <i>/duckiebot_hostname</i>/vrpn_client/estimated_odometry
      $ cd project_VO_ws && source devel/setup.bash
-     $ roslaunch vo_duckiebot decoder_node.launch veh:="<i>hostname</i>" param_file_name:="decoder_10Hz"
-     </code></pre>
+     $ roslaunch vo_duckiebot decoder_node.launch veh:="<i>hostname</i>" param_file_name:="decoder_10Hz" </code></pre>
 
-   * Run synchronization_node (5th terminal): synchronization between image/raw and vicon data
+   * Run synchronization_node (3th terminal): synchronization between image/raw and vicon data
        <pre><code>$ cd project_VO_ws && source devel/setup.bash
-     $ roslaunch vo_duckiebot data_syn.launch veh:="<i>hostname</i>" veh_vicon:="<i>duckiebot_hostname</i>"
-       </code></pre>
+     $ roslaunch vo_duckiebot data_syn.launch veh:="<i>hostname</i>" veh_vicon:="<i>duckiebot_hostname</i>" </code></pre>
 
    * Record new data (4th terminal)
-       <pre><code>$ rosbag record /<i>hostname</i>/camera_node/image/raw /<i>hostname</i>/vicon_republish/pose
-       </code></pre>
+       <pre><code>$ rosbag record /<i>hostname</i>/camera_node/image/raw /<i>hostname</i>/vicon_republish/pose </code></pre>
 
    * Verify camera info and Check image_raw published at 10Hz
        <pre><code>$ rostopic echo /<i>hostname</i>/camera_node/camera_info
-      $ rostopic hz /<i>hostname</i>/camera_node/image/raw
-       </code></pre>
+    $ rostopic hz /<i>hostname</i>/camera_node/image/raw </code></pre>
 
      Even we run this node at 10Hz, this topic is published at about 8Hz!
 
