@@ -95,6 +95,8 @@ NOTE: by default, decoder_node is run on Duckiebot at very low frequency (2Hz) d
 ## VISO2: TO DO
   * Offline
   * Online
+  * Ground projection => relative pose
+  
 
 ## DEEP LEARNING 1
 ## DEEP LEARNING n
